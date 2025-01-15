@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35514.174 d17.12
+VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6D8443DE-3382-4AC9-81A4-5F02B0DE9EE7}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Communication", "src\Shared\MyRecipeBook.Communication\MyRecipeBook.Communication.csproj", "{8E4B443D-EFD9-4534-B94D-EBAB26055ECA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Exceptions", "src\Shared\MyRecipeBook.Exceptions\MyRecipeBook.Exceptions.csproj", "{B013BA26-F427-43F9-A574-71741E6BCC42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExceptionsBase", "ExceptionsBase", "{5E189671-D2CC-47E1-A1B0-D18FC00CD146}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,5 +68,6 @@ Global
 		{54336A95-E6C6-4591-B80F-F04431EF9DAF} = {3D5537A9-69B3-4AF6-AB1D-7E4A27682012}
 		{8E4B443D-EFD9-4534-B94D-EBAB26055ECA} = {18040D97-B9E5-411A-938F-3169C805A158}
 		{B013BA26-F427-43F9-A574-71741E6BCC42} = {18040D97-B9E5-411A-938F-3169C805A158}
+		{5E189671-D2CC-47E1-A1B0-D18FC00CD146} = {DA61F440-4F51-4C4E-9DA4-B6C4FD743ACB}
 	EndGlobalSection
 EndGlobal

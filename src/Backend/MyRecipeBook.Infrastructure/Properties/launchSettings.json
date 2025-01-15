@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MyRecipeBook.Infrastructure": {
+      "commandName": "Project"
+    },
+    "Perfil 1": {
+      "commandName": "Project"
+    }
+  }
+}

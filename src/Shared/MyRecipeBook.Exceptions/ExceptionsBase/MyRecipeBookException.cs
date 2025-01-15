@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyRecipeBook.Communication.Responses;
+namespace MyRecipeBook.Exceptions.ExceptionsBase;
 
-public class ResponseRegisteredUserJson
+public class MyRecipeBookException : SystemException
 {
 
 }
+
+
