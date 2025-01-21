@@ -22,10 +22,9 @@ public static class DependencyInjectionExtension
 
     private static void AddAutoMapper(IServiceCollection services)
     {
-        services.AddScoped(option => new AutoMapper.MapperConfiguration(options =>
-        {
-            options.AddProfile(new AutoMapping());
-        }).CreateMapper());
+        services.AddScoped(option => new AutoMapper.MapperConfiguration(
+            options => options.AddProfile(new AutoMapping())
+        ).CreateMapper());
     }
 
     /* Quando alguém solicitar essa interface, irá devolver uma instância da classe */
@@ -40,5 +39,3 @@ public static class DependencyInjectionExtension
         services.AddScoped(options => new PassswordEncripter());
     }
 }
-}
-

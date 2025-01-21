@@ -6,58 +6,64 @@ using MyRecipeBook.Communication.Responses;
 using MyRecipeBook.Domain.Repositories.User;
 using MyRecipeBook.Exceptions;
 using MyRecipeBook.Exceptions.ExceptionsBase;
+using MyRecipeBook.Infrastructure.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyRecipeBook.Application.UseCases.User.Register;
-
-public class RegisterUserUseCase : IRegisterUserUseCase
+namespace MyRecipeBook.Application.UseCases.User.Register
 {
-    private readonly IUserWriteOnlyRepository _writeOnlyRepository;
-    private readonly IUserReadOnlyRepository _readOnlyRepository;
-    private readonly IMapper _mapper;
-    private readonly PassswordEncripter _passswordEncripter;
-
-    public RegisterUserUseCase(
-        IUserWriteOnlyRepository writeOnlyRepository, 
-        IUserReadOnlyRepository readOnlyRepository, 
-        PassswordEncripter passswordEncripter,
-        IMapper mapper)
+    public class RegisterUserUseCase : IRegisterUserUseCase
     {
-        _writeOnlyRepository = writeOnlyRepository;
-        _readOnlyRepository = readOnlyRepository;
-        _mapper = mapper;
-        _passswordEncripter = passswordEncripter;
-    }
-    public async Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson request)
-    {
-        Validate(request);
+        private readonly IUserWriteOnlyRepository _writeOnlyRepository;
+        private readonly IUserReadOnlyRepository _readOnlyRepository;
+        private readonly IUnitOfWork  _unitOfWork;
+        private readonly IMapper _mapper;
+        private readonly PassswordEncripter _passswordEncripter;
 
-        var user = _mapper.Map<Domain.Entites.User>(request);
-        user.Password = _passswordEncripter.Encrypt(request.Password);
-
-        await _writeOnlyRepository.Add(user);
-
-        return new ResponseRegisterUserJson
+        public RegisterUserUseCase(
+            IUserWriteOnlyRepository writeOnlyRepository,
+            IUserReadOnlyRepository readOnlyRepository,
+            IUnitOfWork unitOfWork,
+            PassswordEncripter passswordEncripter,
+            IMapper mapper)
         {
-            Name = request.Name,
-        };
-    }
-
-    private void Validate(RequestRegisterUserJson request)
-    {
-        var validator = new RegisterUserValidator();
-        var result = validator.Validate(request);
-
-        if(!result.IsValid )
+            _writeOnlyRepository = writeOnlyRepository;
+            _readOnlyRepository = readOnlyRepository;
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
+            _passswordEncripter = passswordEncripter;
+        }
+        public async Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson request)
         {
-            var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
+            Validate(request);
 
-            throw new ErrorOnValidationException(errorMessages);
+            var user = _mapper.Map<Domain.Entites.User>(request);
+            user.Password = _passswordEncripter.Encrypt(request.Password);
+
+            await _writeOnlyRepository.Add(user);
+
+            await _unitOfWork.Commit();
+
+            return new ResponseRegisterUserJson
+            {
+                Name = request.Name,
+            };
+        }
+
+        private void Validate(RequestRegisterUserJson request)
+        {
+            var validator = new RegisterUserValidator();
+            var result = validator.Validate(request);
+
+            if (!result.IsValid)
+            {
+                var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
+
+                throw new ErrorOnValidationException(errorMessages);
+            }
         }
     }
 }
-

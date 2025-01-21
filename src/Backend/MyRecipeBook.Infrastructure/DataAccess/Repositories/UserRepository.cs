@@ -19,14 +19,11 @@ public class UserRepository : IUserWriteOnlyRepository, IUserReadOnlyRepository
      * Adicionar Usuário
      * Coloque opções de métodos asincronos para funções que persistem/usam o banco de dados 
      */
-    public async Task Add(User user) => _dbContext.Users.AddAsync(user);
+    public async Task Add(User user) => await _dbContext.Users.AddAsync(user);
     /* 
      * Verificar se já existe algum e-mail cadastrado anteriormente
      */
     public async Task<bool> ExistActiveUserWithEmail(string email) =>
         /* Qualquer resultado onde o email seja igual e esteja ativo */
         await _dbContext.Users.AnyAsync(user => user.Email.Equals(email) && user.Active);
-
-
 }
-

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MyRecipeBook.Domain.Repositories;
 using MyRecipeBook.Domain.Repositories.User;
 using MyRecipeBook.Infrastructure.DataAccess;
 using MyRecipeBook.Infrastructure.DataAccess.Repositories;
@@ -21,7 +22,7 @@ public static class DependencyInjectionExtension
     private static void AddDbContext(this IServiceCollection services)
     {
 
-        var connectionString = "Data Source=localhost;Initial Catalog=meulivrodereceitas;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
+        var connectionString = "Data Source=CM-NB-93;Initial Catalog=meulivrodereceitas;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
 
         services.AddDbContext<MyRecipeBookDbContext>(DbContextOptions =>
         {
@@ -32,6 +33,7 @@ public static class DependencyInjectionExtension
 
     private static void AddRepositories(this IServiceCollection services)
     {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
         services.AddScoped<IUserReadOnlyRepository, UserRepository>();
     }
