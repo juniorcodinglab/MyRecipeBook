@@ -9,6 +9,8 @@ namespace MyRecipeBook.Application.Services.Cryptography;
 
 public class PassswordEncripter
 {
+    private readonly string _additionalKey;
+    public PassswordEncripter(string additionalKey) => _additionalKey = additionalKey;
     public string Encrypt(string password)
     {
         var chaveAdicional = "ABC";

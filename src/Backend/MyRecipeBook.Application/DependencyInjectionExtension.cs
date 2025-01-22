@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MyRecipeBook.Application.Services.AutoMapper;
 using MyRecipeBook.Application.Services.Cryptography;
 using MyRecipeBook.Application.UseCases.User.Register;
@@ -13,11 +14,11 @@ namespace MyRecipeBook.Application;
 
 public static class DependencyInjectionExtension
 {
-    public static void AddApplication(this IServiceCollection services)
+    public static void AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
         AddAutoMapper(services);
         AddUseCases(services);
-        AddPasswordEncrpter(services);
+        AddPasswordEncrpter(services, configuration);
     }
 
     private static void AddAutoMapper(IServiceCollection services)
@@ -34,8 +35,9 @@ public static class DependencyInjectionExtension
     }
 
     /* Quando alguém solicitar essa interface, irá devolver uma instância da classe */
-    private static void AddPasswordEncrpter(IServiceCollection services)
+    private static void AddPasswordEncrpter(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped(options => new PassswordEncripter());
+        var additionalKey = configuration.GetSection("Settings:Password:AdditionalKey").Value;
+        services.AddScoped(options => new PassswordEncripter(additionalKey!));
     }
 }

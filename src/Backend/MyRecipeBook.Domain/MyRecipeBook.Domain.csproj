@@ -8,11 +8,8 @@
 
   <ItemGroup>
     <Compile Remove="MyRecipeBook\**" />
-    <Compile Remove="NovaPasta\**" />
     <EmbeddedResource Remove="MyRecipeBook\**" />
-    <EmbeddedResource Remove="NovaPasta\**" />
     <None Remove="MyRecipeBook\**" />
-    <None Remove="NovaPasta\**" />
   </ItemGroup>
 
 </Project>
