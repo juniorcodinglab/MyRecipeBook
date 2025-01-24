@@ -24,11 +24,11 @@ namespace MyRecipeBook.Exceptions {
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ResourceMessagesException_en_US {
         
-        private static global::System.Resources.ResourceManager resourceMan;
+        public static global::System.Resources.ResourceManager resourceMan;
         
-        private static global::System.Globalization.CultureInfo resourceCulture;
+        public static global::System.Globalization.CultureInfo resourceCulture;
         
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledpublicCode")]
         public ResourceMessagesException_en_US() {
         }
         
@@ -57,6 +57,15 @@ namespace MyRecipeBook.Exceptions {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a EMail already registered.
+        /// </summary>
+        public static string EMAIL_ALREADY_REGISTERED {
+            get {
+                return ResourceManager.GetString("EMAIL_ALREADY_REGISTERED", resourceCulture);
             }
         }
         
