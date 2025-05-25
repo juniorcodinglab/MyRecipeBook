@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyRecipeBook.Domain.Entites;
+namespace MyRecipeBook.Domain.Entities;
 
 public class User : EntityBase
 {

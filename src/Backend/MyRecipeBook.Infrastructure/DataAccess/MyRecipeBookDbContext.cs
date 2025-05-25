@@ -1,19 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyRecipeBook.Domain.Entites;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MyRecipeBook.Domain.Entities;
 
 namespace MyRecipeBook.Infrastructure.DataAccess;
 
 public class MyRecipeBookDbContext : DbContext
 {
-    public MyRecipeBookDbContext(DbContextOptions options) : base(options)
-    {
-
-    }
+    public MyRecipeBookDbContext(DbContextOptions options) : base(options) { }
 
     /* Acessar a tabela do usuário */
     public DbSet<User> Users { get; set; }

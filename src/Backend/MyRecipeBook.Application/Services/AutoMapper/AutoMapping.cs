@@ -16,7 +16,7 @@ public class AutoMapping : Profile
 
     private void RequestToDomain()
     {
-        CreateMap<RequestRegisterUserJson, Domain.Entites.User>()
+        CreateMap<RequestRegisterUserJson, Domain.Entities.User>()
             .ForMember(dest => dest.Password, opt => opt.Ignore()); // ignorando a propriedade password para o destino
     }
 }

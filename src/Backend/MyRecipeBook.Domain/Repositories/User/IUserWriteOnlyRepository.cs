@@ -8,6 +8,6 @@ namespace MyRecipeBook.Domain.Repositories.User;
 
 public interface IUserWriteOnlyRepository
 {
-    public Task Add(Entites.User user);
+    public Task Add(Entities.User user);
 }
 
