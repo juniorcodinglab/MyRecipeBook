@@ -7,9 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MyRecipeBook.Application.UseCases.User.Register;
-
 public interface IRegisterUserUseCase
 {
-    public Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson request);
+    Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson request);
 }
 

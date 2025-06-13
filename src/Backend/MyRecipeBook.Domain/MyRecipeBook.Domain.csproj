@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="NovaPasta\**" />
-    <EmbeddedResource Remove="NovaPasta\**" />
-    <None Remove="NovaPasta\**" />
+    <Compile Remove="MyRecipeBook\**" />
+    <EmbeddedResource Remove="MyRecipeBook\**" />
+    <None Remove="MyRecipeBook\**" />
   </ItemGroup>
 
 </Project>

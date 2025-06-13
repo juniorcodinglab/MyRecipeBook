@@ -10,11 +10,11 @@ namespace MyRecipeBook.Application;
 
 public static class DependencyInjectionExtension
 {
-    public static void AddApplication(this IServiceCollection services, IConfiguration configuration)
+    public static void AddApplication(this IServiceCollection services)
     {
         AddAutoMapper(services);
         AddUseCases(services);
-        AddPasswordEncrpter(services, configuration);
+        AddPasswordEncrpter(services);
     }
 
     private static void AddAutoMapper(IServiceCollection services)
@@ -32,7 +32,7 @@ public static class DependencyInjectionExtension
     }
 
     /* Quando alguém solicitar essa interface, irá devolver uma instância da classe */
-    private static void AddPasswordEncrpter(IServiceCollection services, IConfiguration configuration)
+    private static void AddPasswordEncrpter(IServiceCollection services)
     {
 
         var additionalKey = configuration.GetValue<string>("Settings:Password:AdditionalKey");
