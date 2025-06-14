@@ -12,7 +12,7 @@ public static class ConfigurationExtension
     }
     public static DatabaseType DatabaseType(this IConfiguration configuration)
     {
-        var databaseType = configuration.GetConnectionString("DatabaseType");
+        var databaseType = configuration.GetConnectionString("DatabaseType"); ;
 
         return (DatabaseType)Enum.Parse(typeof(DatabaseType), databaseType!);
     }
